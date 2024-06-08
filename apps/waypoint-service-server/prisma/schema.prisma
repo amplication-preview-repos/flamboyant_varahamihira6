@@ -1,0 +1,29 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Waypoint {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  latitude  Float?
+  longitude Float?
+  name      String?
+  updatedAt DateTime @updatedAt
+}
+
+model Device {
+  createdAt DateTime          @default(now())
+  id        String            @id @default(cuid())
+  name      String?
+  status    EnumDeviceStatus?
+  updatedAt DateTime          @updatedAt
+}
+
+enum EnumDeviceStatus {
+  Option1
+}
